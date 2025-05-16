@@ -1,4 +1,4 @@
-# pullrefresh
+# easy-pullrefresh
 
 🎯 A lightweight, dependency-free **pullrefresh library** for mobile web. Supports both **Vue** and **React**, and written in **TypeScript**.
 
@@ -16,7 +16,7 @@
 
 ## 📦 Installation
 ```bash
-npm install pullrefresh
+npm install easy-pullrefresh
 ```
 
 ## ⚙️ Usage
