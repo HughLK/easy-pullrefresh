@@ -31,6 +31,8 @@ function initPullRefresh({ container, onRefresh, indicatorRender, threshold = 60
       z-index: 10;
     `
     parentNode.prepend(indicator)
+    container.style.willChange = 'transform'
+    indicator.style.willChange = 'transform'
 
     let pulling = false
     let startY = 0
@@ -60,6 +62,7 @@ function initPullRefresh({ container, onRefresh, indicatorRender, threshold = 60
         requestAnimationFrame(() => {
             container.style.transform = `translateY(${distance}px)`
             indicator.style.transform = `translateY(${distance}px)`
+            container.style.clipPath = `inset(0px 0px calc(${distance}px))`
             updateStatus('pulling', distance)
             if (!vibrateOnce && distance >= threshold) {
                 navigator.vibrate(1000)
@@ -72,16 +75,20 @@ function initPullRefresh({ container, onRefresh, indicatorRender, threshold = 60
         if (!pulling) return
         pulling = false
 
+        indicator.style.transition = 'transform 0.3s'
+        container.style.transition = 'all 0.3s'
+
         if (distance >= threshold) {
             updateStatus('loading', 0)
-            container.style.transition = 'transform 0.3s'
             container.style.transform = `translateY(${threshold}px)`
-            indicator.style.visibility = 'hidden'
+            container.style.clipPath = `inset(0px 0px calc(${threshold}px))`
+            indicator.style.transform = `translateY(${threshold}px)`
             await onRefresh()
         }
 
-        container.style.transition = 'transform 0.3s'
         container.style.transform = 'translateY(0)'
+        container.style.clipPath = `inset(0px 0px calc(0px))`
+        indicator.style.visibility = 'hidden'
         updateStatus('idle', 0)
         distance = 0
     })
