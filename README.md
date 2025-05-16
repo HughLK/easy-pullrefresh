@@ -26,7 +26,7 @@ npm install pullrefresh
 import initPullRefresh from 'pulltorefresh-lite'
 
 initPullRefresh({
-  container: document.querySelector('.scroll-container')!,
+  container: document.querySelector('.scroll-container'),
   onRefresh: async () => {
     await fetchData()
   },
