@@ -1,0 +1,25 @@
+{
+  "name": "easy-pullrefresh",
+  "version": "1.0.4",
+  "description": "A lightweight JS library for pull to refresh",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HughLK/easy-pullrefresh.git"
+  },
+  "keywords": [
+    "pull to fresh",
+    "pull refresh",
+    "pull",
+    "refresh"
+  ],
+  "author": "HughLK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HughLK/easy-pullrefresh/issues"
+  },
+  "homepage": "https://github.com/HughLK/easy-pullrefresh#readme"
+}
