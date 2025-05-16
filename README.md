@@ -1,6 +1,6 @@
 # easy-pullrefresh
 
-🎯 A lightweight, dependency-free **pullrefresh library** for mobile web. Supports both **Vue** and **React**, and written in **TypeScript**.
+🎯 A lightweight, dependency-free **pull to refresh library** for mobile web. Supports both **Vue** and **React**, and written in **TypeScript**.
 
 ## 🚀 Features
 
@@ -23,7 +23,7 @@ npm install easy-pullrefresh
 ### Basic Example
 
 ```ts
-import initPullRefresh from 'pulltorefresh-lite'
+import initPullRefresh from 'easy-pullrefresh'
 
 initPullRefresh({
   container: document.querySelector('.scroll-container'),
