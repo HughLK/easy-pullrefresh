@@ -15,6 +15,29 @@ function initPullRefresh({ container, onRefresh, indicatorRender, threshold = 60
         indicator.innerHTML = indicatorRender?.(status, distance) || ''
     }
 
+    async function onTouchEnd() {
+        if (!pulling) return
+        pulling = false
+
+        indicator.style.transition = 'transform 0.3s'
+        container.style.transition = 'all 0.3s'
+
+        if (distance >= threshold) {
+            updateStatus('loading', 0)
+            container.style.transform = `translateY(${threshold}px)`
+            container.style.clipPath = `inset(0px 0px calc(${threshold}px))`
+            indicator.style.transform = `translateY(${threshold}px)`
+            await onRefresh()
+        }
+
+        container.style.transform = 'translateY(0)'
+        container.style.clipPath = `inset(0px 0px calc(0px))`
+        indicator.style.visibility = 'hidden'
+        updateStatus('idle', 0)
+        distance = 0
+        vibrateOnce = false
+    }
+
     const { top } = container.getBoundingClientRect()
     const parentNode = container.parentNode as HTMLElement
     parentNode.style.position ||= 'relative'
@@ -72,28 +95,8 @@ function initPullRefresh({ container, onRefresh, indicatorRender, threshold = 60
         })
     }, { passive: false })
 
-    container.addEventListener('touchend', async () => {
-        if (!pulling) return
-        pulling = false
-
-        indicator.style.transition = 'transform 0.3s'
-        container.style.transition = 'all 0.3s'
-
-        if (distance >= threshold) {
-            updateStatus('loading', 0)
-            container.style.transform = `translateY(${threshold}px)`
-            container.style.clipPath = `inset(0px 0px calc(${threshold}px))`
-            indicator.style.transform = `translateY(${threshold}px)`
-            await onRefresh()
-        }
-
-        container.style.transform = 'translateY(0)'
-        container.style.clipPath = `inset(0px 0px calc(0px))`
-        indicator.style.visibility = 'hidden'
-        updateStatus('idle', 0)
-        distance = 0
-        vibrateOnce = false
-    })
+    container.addEventListener('touchend', onTouchEnd)
+    container.addEventListener('touchcancel', onTouchEnd)
 }
 
 export default initPullRefresh
