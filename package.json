@@ -1,6 +1,6 @@
 {
   "name": "easy-pullrefresh",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A lightweight JS library for pull to refresh",
   "main": "src/index.ts",
   "scripts": {
