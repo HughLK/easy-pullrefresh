@@ -45,7 +45,8 @@ initPullRefresh({
 |------------------|-------------------------------|----------|-------------|
 | `container`      | `HTMLElement`                 | ✅       | Scrollable container |
 | `onRefresh`      | `() => Promise<void>`         | ✅       | Called when pull exceeds threshold |
-| `indicatorRender`| `(status, distance) => string`          | ❌       |Render function for status indicator. The `status` can be: <br> - `'idle'`: no interaction<br> - `'pulling'`: user is pulling<br> - `'loading'`: refresh in progress. The `distance` is the offset user pulling |
+| `indicatorRender`| `(status, distance) => string`          | ❌       |Render function for status indicator. The `status` can be: <br> - `'idle'`: no interaction<br> - `'pulling'`: user is pulling<br> - `'loading'`: refresh in progress. \
+The `distance` is pull distance |
 | `threshold`      | `number`                      | ❌       | Minimum pull distance to trigger `onRefresh` (default: `60`) |
 
 ---
