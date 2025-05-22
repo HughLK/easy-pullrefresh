@@ -57,6 +57,7 @@ function initPullRefresh({ container, onRefresh, indicatorRender, threshold = 60
 
         distance = dampedPull(deltaY)
         container.style.transition = 'transform 0s'
+        indicator.style.transition = 'transform 0s'
         indicator.style.visibility = 'visible'
 
         requestAnimationFrame(() => {
@@ -91,6 +92,7 @@ function initPullRefresh({ container, onRefresh, indicatorRender, threshold = 60
         indicator.style.visibility = 'hidden'
         updateStatus('idle', 0)
         distance = 0
+        vibrateOnce = false
     })
 }
 
